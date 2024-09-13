@@ -1,0 +1,160 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden; /* Impede rolagem horizontal durante a animação */
+    overflow-y: hidden; /* Impede rolagem vertical durante a animação */
+}
+
+/* Tela Inicial */
+#intro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #003366;
+    position: fixed; /* Garante que a tela inicial cubra a tela inteira */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10; /* Coloca a tela inicial acima de outros conteúdos */
+}
+
+#intro #logo {
+    width: 500px; /* Logo grande */
+    animation: fadeIn 3s forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Conteúdo Principal */
+#content {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 1s ease, transform 1s ease;
+    position: relative;
+    z-index: 1; /* Garante que o conteúdo principal esteja atrás da tela inicial */
+}
+
+/* Classe que exibe o conteúdo */
+#content.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Cabeçalho */
+header {
+    text-align: center;
+    padding: 1rem;
+    background: #fff; 
+    color: #fff;
+    position: relative;
+}
+
+header img#logo-header {
+    width: 50px; /* Logo pequena */
+    animation: none; /* Desativa a animação do logo grande */
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #071B26; /* Azul escuro */
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+header.scrolled {
+    padding: 0.5rem;
+}
+
+/* Seções */
+section {
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Estilos da galeria de clientes */
+.clients {
+    display: flex;
+    overflow: hidden; /* Esconde o excesso de logos fora do container */
+    position: relative;
+    width: 100%; /* Ajusta a largura do container para o conteúdo */
+    white-space: nowrap; /* Adicionado */
+}
+
+.clients-wrapper {
+    display: flex;
+    animation: scrollLogos 30s linear infinite; /* Aumente o tempo para desacelerar */
+}
+
+.client-logo-container {
+    flex: 0 0 auto; /* Impede o container de se expandir ou encolher */
+    width: 100px; /* Tamanho fixo do container */
+    height: 100px; /* Tamanho fixo do container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: transparent; /* Fundo transparente */
+    border: none; /* Sem bordas */
+    margin: 0 10px; /* Espaçamento entre logos */
+
+}
+
+.client-logo-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ajusta a imagem dentro do container mantendo a proporção */
+}
+
+/* Animação de rotação contínua */
+@keyframes scrollLogos {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.clients-wrapper:after {
+    content: '';
+    flex: 0 0 auto;
+    width: 100px; /* Tamanho fixo do container */
+    height: 100px; /* Tamanho fixo do container */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .client-logo-container {
+        width: 80px; /* Reduz o tamanho para dispositivos menores */
+        height: 80px; /* Reduz o tamanho para dispositivos menores */
+    }
+}
